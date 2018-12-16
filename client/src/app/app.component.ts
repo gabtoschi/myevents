@@ -18,8 +18,8 @@ export class AppComponent {
 
   // Angular 2 Life Cycle event when component has been initialized
   ngOnInit() {
-    this.addPerson('teste4', '44');
-    this.getAllPeople();
+    /*this.addPerson('teste4', '44');
+    this.getAllPeople();*/
   }
 
   // Add one person to the API

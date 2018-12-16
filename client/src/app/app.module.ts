@@ -5,6 +5,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { ReactiveFormsModule } from '@angular/forms';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MaterialModule } from './material.module';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -12,7 +17,11 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    LayoutModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
