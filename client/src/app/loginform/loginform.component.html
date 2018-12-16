@@ -1,3 +1,35 @@
-<p>
-  loginform works!
-</p>
+<div class="row">
+  <div class="col s12 m8 offset-m2 l6 offset-l3">
+    <mz-card>
+      <mz-card-title>
+        Faça seu login na plataforma
+      </mz-card-title>
+
+      <mz-card-content>
+        <br>
+
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <mz-input-container>
+              <input mz-input type="email" [label]='"E-mail"' formControlName="email">
+          </mz-input-container>
+          <mz-input-container>
+              <input mz-input type="password" [label]='"Senha"' formControlName="password">
+          </mz-input-container>
+
+          <button mz-button type="submit" class="indigo" [disabled]="!loginForm.valid">Fazer login</button>
+        </form>
+
+      </mz-card-content>
+    </mz-card>
+
+    <mz-card>
+      <mz-card-content>
+          Não tem um cadastro ainda? Crie sua conta agora e comece a cadastrar seus eventos!
+      </mz-card-content>
+
+      <mz-card-action>
+        <a mz-button class="indigo" routerLink="/register">CADASTRAR-SE</a>
+      </mz-card-action>
+    </mz-card>
+  </div>
+</div>
