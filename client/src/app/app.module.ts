@@ -10,9 +10,14 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MaterialModule } from './material.module';
 
+import { LoginformComponent } from './loginform/loginform.component';
+import { RegisterformComponent } from './registerform/registerform.component';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginformComponent,
+    RegisterformComponent
   ],
   imports: [
     BrowserModule,
