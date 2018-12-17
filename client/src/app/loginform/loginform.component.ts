@@ -22,6 +22,7 @@ export class LoginformComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
+    if (this.authService.isLogged()) this.router.navigateByUrl('/dashboard');
   }
 
   loginUser(){

@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MzBaseModal } from 'ngx-materialize';
+import { MzToastService } from 'ngx-materialize';
 
 import { FormGroup, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
+
+import { EventService, CreateEventFormData } from '../event.service';
  
 @Component({
   selector: 'app-create-event',
@@ -9,11 +13,16 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./create-event.component.css']
 })
 export class CreateEventComponent extends MzBaseModal {
+  postData: CreateEventFormData = {
+    description: '', startDate: new Date(Date.now()), endDate: new Date(Date.now())
+  };
 
   createForm = new FormGroup({
     description: new FormControl(),
     startDate: new FormControl(),
-    endDate: new FormControl()
+    endDate: new FormControl(),
+    startTime: new FormControl(),
+    endTime: new FormControl()
   });
 
   datePickerOptions: Pickadate.DateOptions = {
@@ -31,7 +40,8 @@ export class CreateEventComponent extends MzBaseModal {
     labelMonthSelect: 'Selecione o mês',
     labelYearSelect: 'Selecione o ano',
 
-    format: 'dd/mm/yyyy'
+    format: 'dd/mm/yyyy',
+    formatSubmit: 'yyyy:mm:dd'
   }
 
   timePickerOptions: Pickadate.TimeOptions = {
@@ -41,8 +51,48 @@ export class CreateEventComponent extends MzBaseModal {
     canceltext: 'Cancelar'
   }
 
-  constructor() {
+  constructor(private eventService: EventService, private router: Router, private toastService: MzToastService) {
     super();
   }
+
+  resetForm(){
+    this.createForm.setValue({
+      description: '',
+      startDate: '',
+      endDate: '',
+      startTime: '',
+      endTime: ''
+    });
+  }
+
+  submitForm(){
+    // description
+    this.postData.description = this.createForm.get('description').value;
+
+    // start date + time
+    let startD = this.createForm.get('startDate').value.split(':');
+    let startT = this.createForm.get('startTime').value.split(':');
+    this.postData.startDate = new Date(startD[0]-1, startD[1], startD[2], startT[0], startT[1], 0, 0);
+    console.log(this.postData.startDate);
+
+    // end date + time
+    let endD = this.createForm.get('endDate').value.split(':');
+    let endT = this.createForm.get('endTime').value.split(':');
+    this.postData.endDate = new Date(endD[0]-1, endD[1], endD[2], endT[0], endT[1], 0, 0);
+    console.log(this.postData.endDate);
+
+    this.eventService.createEvent(this.postData).subscribe(
+      () => {
+        this.toastService.show('Evento cadastrado!', 4000, 'green');
+        this.resetForm(); 
+      },
+      (err) => { 
+        this.toastService.show('Aconteceu um erro durante a operação. Tente novamente.', 4000, 'red');
+        console.error(err);
+      }
+    );
+  }
+
+  
 
 }

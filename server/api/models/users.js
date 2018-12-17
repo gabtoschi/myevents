@@ -21,7 +21,7 @@ var userSchema = new mongoose.Schema({
         required: true
     },
     invites: [{
-        event: ObjectId,
+        event: mongoose.Schema.Types.ObjectId,
         status: String
     }]
 });

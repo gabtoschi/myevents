@@ -30,6 +30,7 @@ process.on('SIGINT', function(){
 
 // models
 require('../models/users');
+require('../models/events');
 
 /*const express = require('express');
 const router = express.Router();

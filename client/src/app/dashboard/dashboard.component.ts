@@ -9,7 +9,7 @@ import { CreateEventComponent } from '../create-event/create-event.component';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
+  
   constructor(private modalService: MzModalService) {}
 
   public openCreateEventModal(){

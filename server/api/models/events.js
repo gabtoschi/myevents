@@ -14,7 +14,7 @@ var eventSchema = new mongoose.Schema({
         required: true
     },
     creator: {
-        type: ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         required: true
     }
 });

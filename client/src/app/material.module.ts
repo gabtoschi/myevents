@@ -13,7 +13,7 @@ import { MzModalModule } from 'ngx-materialize';
 import { MzTextareaModule } from 'ngx-materialize';
 import { MzDatepickerModule } from 'ngx-materialize';
 import { MzTimepickerModule } from 'ngx-materialize';
-
+import { MzToastModule } from 'ngx-materialize';
 
 @NgModule({
   declarations: [],
@@ -31,7 +31,8 @@ import { MzTimepickerModule } from 'ngx-materialize';
     MzModalModule,
     MzTextareaModule,
     MzDatepickerModule,
-    MzTimepickerModule
+    MzTimepickerModule,
+    MzToastModule
   ],
   exports: [
     MzButtonModule,
@@ -46,7 +47,8 @@ import { MzTimepickerModule } from 'ngx-materialize';
     MzModalModule,
     MzTextareaModule,
     MzDatepickerModule,
-    MzTimepickerModule
+    MzTimepickerModule,
+    MzToastModule
   ]
 })
 export class MaterialModule { }

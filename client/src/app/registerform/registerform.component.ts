@@ -20,10 +20,6 @@ export class RegisterformComponent implements OnInit {
     password: new FormControl()
   });
 
-  onSubmit() {
-    console.warn(this.registerForm.value);
-  }
-
   registerUser() {
     this.credentials.name = this.registerForm.get('name').value;
     this.credentials.email = this.registerForm.get('email').value;

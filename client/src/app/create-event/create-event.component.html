@@ -29,8 +29,7 @@
   </mz-modal-content>
 
   <mz-modal-footer>
-    <form [formGroup]="createForm">
-      <button class="red-text" mz-button [flat]="true" mz-modal-close>Cancelar</button>
+    <form [formGroup]="createForm" (ngSubmit)="submitForm()">
       <button class="green-text" mz-button [flat]="true" type="submit">Cadastrar</button>
     </form>
   </mz-modal-footer>
