@@ -9,21 +9,21 @@ import { HttpClient } from '@angular/common/http';
 export class AppComponent {
   title = 'client';
 
-  APIUrl = 'http://localhost:3000';
+  apiUrl = 'http://localhost:3000';
 
   // Declare empty list of people
-  people: Object[] = [];
+  //people: Object[] = [];
 
   constructor(private http: HttpClient) {}
 
   // Angular 2 Life Cycle event when component has been initialized
   ngOnInit() {
-    this.addPerson('teste4', '44');
-    this.getAllPeople();
+    /*this.addPerson('teste4', '44');
+    this.getAllPeople();*/
   }
 
   // Add one person to the API
-  addPerson(name, age) {
+  /*addPerson(name, age) {
     this.http.post(this.APIUrl + '/users', {'name': name, 'age': age})
       .subscribe(
         (response) => { console.log('response: ' + response) },

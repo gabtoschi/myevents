@@ -5,16 +5,38 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MaterialModule } from './material.module';
+
+import { LoginformComponent } from './loginform/loginform.component';
+import { RegisterformComponent } from './registerform/registerform.component';
+import { ProfileComponent } from './profile/profile.component';
+
+import { AuthService } from './auth.service';
+import { AuthGuardService } from './auth-guard.service';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginformComponent,
+    RegisterformComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    LayoutModule,
+    MaterialModule
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    AuthGuardService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

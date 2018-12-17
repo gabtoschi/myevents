@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col s12 m8 offset-m2 l6 offset-l3">
+    <mz-card>
+      <mz-card-title>
+        Cadastre-se
+      </mz-card-title>
+
+      <mz-card-content>
+        <br>
+
+        <form [formGroup]="registerForm" (ngSubmit)="registerUser()">
+          <mz-input-container class="coloredInput">
+              <input mz-input type="text" [label]='"Nome"' formControlName="name">
+          </mz-input-container>
+          <mz-input-container class="coloredInput">
+              <input mz-input type="email" [label]='"E-mail"' formControlName="email">
+          </mz-input-container>
+          <mz-input-container class="coloredInput">
+              <input mz-input type="password" [label]='"Senha"' formControlName="password">
+          </mz-input-container>
+
+          <button mz-button type="submit" class="indigo" [disabled]="!registerForm.valid">Finalizar cadastro</button>
+        </form>
+
+      </mz-card-content>
+    </mz-card>
+  </div>
+</div>
