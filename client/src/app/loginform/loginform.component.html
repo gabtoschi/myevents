@@ -8,7 +8,7 @@
       <mz-card-content>
         <br>
 
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
           <mz-input-container>
               <input mz-input type="email" [label]='"E-mail"' formControlName="email">
           </mz-input-container>

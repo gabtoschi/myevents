@@ -8,7 +8,7 @@
       <mz-card-content>
         <br>
 
-        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="registerForm" (ngSubmit)="registerUser()">
           <mz-input-container class="coloredInput">
               <input mz-input type="text" [label]='"Nome"' formControlName="name">
           </mz-input-container>
