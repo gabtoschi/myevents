@@ -6,6 +6,9 @@ import { MzNavbarModule } from 'ngx-materialize';
 import { MzIconModule, MzIconMdiModule } from 'ngx-materialize';
 import { MzCardModule } from 'ngx-materialize';
 import { MzInputModule } from 'ngx-materialize';
+import { MzCollapsibleModule } from 'ngx-materialize';
+import { MzBadgeModule } from 'ngx-materialize';
+import { MzCollectionModule } from 'ngx-materialize';
 
 @NgModule({
   declarations: [],
@@ -16,7 +19,10 @@ import { MzInputModule } from 'ngx-materialize';
     MzIconModule,
     MzIconMdiModule,
     MzCardModule,
-    MzInputModule
+    MzInputModule,
+    MzCollapsibleModule,
+    MzBadgeModule,
+    MzCollectionModule
   ],
   exports: [
     MzButtonModule,
@@ -24,7 +30,10 @@ import { MzInputModule } from 'ngx-materialize';
     MzIconModule,
     MzIconMdiModule,
     MzCardModule,
-    MzInputModule
+    MzInputModule,
+    MzCollapsibleModule,
+    MzBadgeModule,
+    MzCollectionModule
   ]
 })
 export class MaterialModule { }
