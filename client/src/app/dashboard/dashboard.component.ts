@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { MzModalService } from 'ngx-materialize';
+import { CreateEventComponent } from '../create-event/create-event.component';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -7,9 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  
+  constructor(private modalService: MzModalService) {}
 
-  constructor() { }
+  public openCreateEventModal(){
+    this.modalService.open(CreateEventComponent);
+  }
 
   ngOnInit() {
   }
