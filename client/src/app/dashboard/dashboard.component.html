@@ -2,12 +2,19 @@
   <div class="col s12 m12 l10 offset-l1">
     <mz-card>
       <mz-card-content>
-          <button mz-button (click)="openCreateEventModal()" class="green">
-            <i mz-icon
-            [align]="'left'"
-            [icon]="'add'"
-            [size]="'small'"></i>Novo evento</button>
-            
+          <div class="row">
+              <button mz-button (click)="openCreateEventModal()" class="green col s8 offset-s2 m3 l3">
+                  <i mz-icon
+                  [align]="'left'"
+                  [icon]="'add'"
+                  [size]="'small'"></i>Novo evento</button>
+      
+                  <button mz-button (click)="logoutUser()" class="indigo col s8 offset-s2 m3 l3 offset-m6 offset-l6">
+                      <i mz-icon
+                      [align]="'left'"
+                      [icon]="'vpn_key'"
+                      [size]="'small'"></i>Logout</button>
+          </div>
             <mz-collection>
                 <mz-collection-item [avatar]="true">
                   <i mz-avatar mz-icon [icon]="'event'" class="indigo"></i>
@@ -15,7 +22,6 @@
                   <div>23/08/2018</div>
                   <div>15h00 - 19h00</div>
                   <div mz-secondary-content>
-                    <a href=""><i mz-icon class="indigo-text" [icon]="'info'"></i></a>
                     <a href=""><i mz-icon class="blue-text" [icon]="'edit'"></i></a>
                     <a href=""><i mz-icon class="red-text" [icon]="'delete'"></i></a>            
                   </div>
