@@ -13,6 +13,10 @@ const authController = require('../controllers/auth');
 router.post('/register', authController.register);
 router.post('/login', authController.login);
 
+// event controller
+const eventController = require('../controllers/event');
+router.post('/event', eventController.createEvent);
+
 // profile controller
 const profileController = require('../controllers/profile');
 router.get('/profile', auth, profileController.getProfile);
