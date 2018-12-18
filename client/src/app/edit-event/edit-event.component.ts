@@ -86,8 +86,8 @@ export class EditEventComponent implements OnInit {
   putValuesInForm(){
     this.editForm.get('description').setValue(this.eventData.description);
 
-    this.editForm.get('startTime').setValue(moment(this.eventData.startDate).format('hh:mm'));
-    this.editForm.get('endTime').setValue(moment(this.eventData.endDate).format('hh:mm'));
+    this.editForm.get('startTime').setValue(moment(this.eventData.startDate).format('HH:mm'));
+    this.editForm.get('endTime').setValue(moment(this.eventData.endDate).format('HH:mm'));
 
     this.editForm.get('startDate').setValue(moment(this.eventData.startDate).format('YYYY:MM:DD'));
     this.editForm.get('endDate').setValue(moment(this.eventData.endDate).format('YYYY:MM:DD'));
@@ -98,15 +98,15 @@ export class EditEventComponent implements OnInit {
     this.eventData.description = this.editForm.get('description').value;
 
     // start date + time
-    let startD = this.editForm.get('startDate').value.split(':');
-    let startT = this.editForm.get('startTime').value.split(':');
-    this.eventData.startDate = new Date(startD[0]-1, startD[1], startD[2], startT[0], startT[1], 0, 0);
+    let startD: moment.Moment = moment(this.editForm.get('startDate').value, 'YYYY:MM:DD');
+    let startT: moment.Moment = moment(this.editForm.get('startTime').value, 'HH:mm');
+    this.eventData.startDate = new Date(startD.year(), startD.month(), startD.date(), startT.hour(), startT.minute(), 0, 0);
     console.log(this.eventData.startDate);
 
     // end date + time
-    let endD = this.editForm.get('endDate').value.split(':');
-    let endT = this.editForm.get('endTime').value.split(':');
-    this.eventData.endDate = new Date(endD[0]-1, endD[1], endD[2], endT[0], endT[1], 0, 0);
+    let endD: moment.Moment = moment(this.editForm.get('endDate').value, 'YYYY:MM:DD');
+    let endT: moment.Moment = moment(this.editForm.get('endTime').value, 'HH:mm');
+    this.eventData.endDate = new Date(endD.year(), endD.month(), endD.date(), endT.hour(), endT.minute(), 0, 0);
     console.log(this.eventData.endDate);
 
     this.eventService.editEvent(this.eventId, this.eventData).subscribe(
