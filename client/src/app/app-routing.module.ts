@@ -16,7 +16,7 @@ const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuardService]},
   {path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService]},
   {path: 'create', component: CreateEventComponent, canActivate: [AuthGuardService]},
-  {path: 'remove', component: RemoveEventComponent},
+  {path: 'remove/:id', component: RemoveEventComponent},
   {path: '', redirectTo: '/login', pathMatch: 'full'}
 ];
 

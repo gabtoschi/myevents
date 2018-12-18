@@ -8,7 +8,7 @@ import * as moment from 'moment';
 export interface EventResult {
   _id: string,
   description: string,
-  userId: string,
+  creator: string,
   startDate: Date,
   endDate: Date
 }
@@ -54,7 +54,7 @@ export class DashboardComponent implements OnInit {
         description: event.description,
         startDate: moment(event.startDate).format("DD/MM/YYYY, HH[h]mm"),
         endDate: moment(event.endDate).format("DD/MM/YYYY, HH[h]mm"),
-        eventId: event.userId
+        eventId: event._id
       });
     });
 

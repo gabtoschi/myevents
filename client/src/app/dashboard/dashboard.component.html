@@ -22,8 +22,8 @@
                   <div><b>Início: </b> {{ event.startDate }}</div>
                   <div><b>Término: </b> {{ event.endDate }}</div>
                   <div mz-secondary-content>
-                    <a href=""><i mz-icon class="blue-text" [icon]="'edit'"></i></a>
-                    <a href=""><i mz-icon class="red-text" [icon]="'delete'"></i></a>            
+                    <a href="#"><i mz-icon class="blue-text" [icon]="'edit'"></i></a>
+                    <a [routerLink]="['/remove/', event.eventId]"><i mz-icon class="red-text" [icon]="'delete'"></i></a>            
                   </div>
                 </mz-collection-item>
                 

@@ -11,20 +11,20 @@
             <mz-collection>
                 <mz-collection-item [avatar]="true">
                   <i mz-avatar mz-icon [icon]="'event'" class="indigo"></i>
-                  <div class="title">event.description</div>
-                  <div><b>Início: </b> event.startDate</div>
-                  <div><b>Término: </b> event.endDate</div>
+                  <div class="title"> {{ event.description }} </div>
+                  <div><b>Início: </b> {{ event.startDate }} </div>
+                  <div><b>Término: </b> {{ event.endDate }} </div>
                 </mz-collection-item>
                 
               </mz-collection>
         </mz-card-content>
 
         <mz-card-action>
-            <a mz-button routerLink='/create' class="red">
+            <button mz-button (click)="removeEvent()" class="red">
               <i mz-icon
               [align]="'left'"
               [icon]="'delete'"
-              [size]="'small'"></i>Remover</a>
+              [size]="'small'"></i>Remover</button>
         </mz-card-action>
       </mz-card>
     </div>

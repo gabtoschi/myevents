@@ -60,4 +60,8 @@ export class EventService {
     return this.http.get(`${apiUrl}/event/all/${userId}`);
   }
 
+  public getEventById(eventId): Observable<any>{
+    return this.http.get(`${apiUrl}/event/${eventId}`);
+  }
+
 }
