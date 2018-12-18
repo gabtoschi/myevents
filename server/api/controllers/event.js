@@ -44,3 +44,11 @@ module.exports.getEventById = function (req, res){
         else res.status(200).json(event);
     });
 }
+
+// /api/remove/:eventId (REMOVE): remove a event by id
+module.exports.removeEvent = function (req, res){
+    Event.findByIdAndRemove(req.params.eventId).exec(function(err){
+        if (err) res.status(404).json(err);
+        else res.status(200).json({'success': true});
+    });
+}
