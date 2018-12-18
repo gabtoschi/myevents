@@ -8,6 +8,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { AuthGuardService } from './auth-guard.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CreateEventComponent } from './create-event/create-event.component';
+import { RemoveEventComponent } from './remove-event/remove-event.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginformComponent},
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuardService]},
   {path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService]},
   {path: 'create', component: CreateEventComponent, canActivate: [AuthGuardService]},
+  {path: 'remove', component: RemoveEventComponent},
   {path: '', redirectTo: '/login', pathMatch: 'full'}
 ];
 

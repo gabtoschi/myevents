@@ -19,6 +19,7 @@ import { ProfileComponent } from './profile/profile.component';
 
 import { AuthService } from './auth.service';
 import { AuthGuardService } from './auth-guard.service';
+import { RemoveEventComponent } from './remove-event/remove-event.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { AuthGuardService } from './auth-guard.service';
     RegisterformComponent,
     ProfileComponent,
     DashboardComponent,
-    CreateEventComponent
+    CreateEventComponent,
+    RemoveEventComponent
   ],
   imports: [
     BrowserModule,

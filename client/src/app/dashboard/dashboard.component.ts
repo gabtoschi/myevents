@@ -50,9 +50,6 @@ export class DashboardComponent implements OnInit {
     var ev: EventDashboardUnit[] = [];
 
     this.eventQueryResults.forEach(function (event){
-      //let sDate = new Date(event.startDate);
-      //let eDate = new Date(event.endDate);
-
       ev.push({
         description: event.description,
         startDate: moment(event.startDate).format("DD/MM/YYYY, HH[h]mm"),
