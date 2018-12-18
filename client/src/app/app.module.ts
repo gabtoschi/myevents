@@ -12,11 +12,16 @@ import { MaterialModule } from './material.module';
 
 import { LoginformComponent } from './loginform/loginform.component';
 import { RegisterformComponent } from './registerform/registerform.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { CreateEventComponent } from './create-event/create-event.component';
+import { RemoveEventComponent } from './remove-event/remove-event.component';
+import { EditEventComponent } from './edit-event/edit-event.component';
+
 import { ProfileComponent } from './profile/profile.component';
 
 import { AuthService } from './auth.service';
 import { AuthGuardService } from './auth-guard.service';
-import { DashboardComponent } from './dashboard/dashboard.component';
+
 
 @NgModule({
   declarations: [
@@ -24,7 +29,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     LoginformComponent,
     RegisterformComponent,
     ProfileComponent,
-    DashboardComponent
+    DashboardComponent,
+    CreateEventComponent,
+    RemoveEventComponent,
+    EditEventComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +46,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
   providers: [
     AuthService,
     AuthGuardService
+  ],
+  entryComponents: [
+    CreateEventComponent
   ],
   bootstrap: [AppComponent]
 })

@@ -39,7 +39,7 @@ export class AuthService {
     this.token = token;
   }
 
-  private getToken() : string {
+  public getToken() : string {
     if (!this.token) return localStorage.getItem(tokenLabel);
     return this.token;
   }

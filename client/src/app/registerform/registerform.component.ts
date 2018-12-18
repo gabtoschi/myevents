@@ -20,17 +20,13 @@ export class RegisterformComponent implements OnInit {
     password: new FormControl()
   });
 
-  onSubmit() {
-    console.warn(this.registerForm.value);
-  }
-
   registerUser() {
     this.credentials.name = this.registerForm.get('name').value;
     this.credentials.email = this.registerForm.get('email').value;
     this.credentials.password = this.registerForm.get('password').value;
 
     this.authService.register(this.credentials).subscribe(() => 
-      { this.router.navigateByUrl('/profile'); },
+      { this.router.navigateByUrl('/dashboard'); },
       (err) => { console.error(err); }
     );
   }

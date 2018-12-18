@@ -1,0 +1,41 @@
+<div class="row">
+    <div class="col s12 m12 l10 offset-l1">
+      <mz-card>
+
+        <mz-card-title>
+          Editar evento
+        </mz-card-title>
+
+        <mz-card-content [formGroup]="editForm">
+            <mz-textarea-container>
+                <textarea mz-textarea [label]='"Descrição"' formControlName="description"></textarea>
+              </mz-textarea-container>
+          
+              <div class="row">
+                <mz-datepicker-container class="col s12 m3 l3">
+                  <input mz-datepicker [label]='"Data de início"' [options]="datePickerOptions" id="startDate" formControlName="startDate">
+                </mz-datepicker-container>
+          
+                <mz-timepicker-container class="col s12 m3 l3">
+                    <input mz-timepicker [label]='"Hora de início"' [placeholder]='"00:00"' [options]="timePickerOptions" id="startTime" formControlName="startTime">
+                </mz-timepicker-container>
+          
+                <mz-datepicker-container class="col s12 m3 l3">
+                    <input mz-datepicker [label]='"Data de término"' [options]="datePickerOptions" id="endDate" formControlName="endDate">
+                </mz-datepicker-container>
+          
+                <mz-timepicker-container class="col s12 m3 l3">
+                    <input mz-timepicker [label]='"Hora de término"' [placeholder]='"00:00"' [options]="timePickerOptions" id="endTime" formControlName="endTime">
+                </mz-timepicker-container>
+              </div>
+        </mz-card-content>
+
+        <mz-card-action>
+            <form [formGroup]="editForm" (ngSubmit)="confirmEdit()">
+                <a mz-button class="red-text" [flat]="true" routerLink="/dashboard">Cancelar</a>
+                <button mz-button class="blue-text" [flat]="true" type="submit">Finalizar edição</button>
+            </form>
+        </mz-card-action>
+      </mz-card>
+    </div>
+  </div>

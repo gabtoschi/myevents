@@ -22,6 +22,7 @@ export class LoginformComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
+    if (this.authService.isLogged()) this.router.navigateByUrl('/dashboard');
   }
 
   loginUser(){
@@ -29,7 +30,7 @@ export class LoginformComponent implements OnInit {
     this.credentials.password = this.loginForm.get('password').value;
 
     this.authService.login(this.credentials).subscribe(() => 
-      { this.router.navigateByUrl('/profile'); },
+      { this.router.navigateByUrl('/dashboard'); },
       (err) => { console.error(err); }
     );
   }

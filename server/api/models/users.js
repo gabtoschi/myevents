@@ -19,7 +19,11 @@ var userSchema = new mongoose.Schema({
     salt: {
         type: String,
         required: true
-    }
+    },
+    invites: [{
+        event: mongoose.Schema.Types.ObjectId,
+        status: String
+    }]
 });
 
 userSchema.methods.setPassword = function(password){
