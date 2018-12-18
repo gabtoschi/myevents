@@ -16,7 +16,7 @@
                       [size]="'small'"></i>Logout</button>
           </div>
             <mz-collection>
-                <mz-collection-item [avatar]="true" *ngFor="let event of allEvents">
+                <mz-collection-item [avatar]="true" *ngFor="let event of futureEvents">
                   <i mz-avatar mz-icon [icon]="'event'" class="indigo"></i>
                   <div class="title">{{ event.description }}</div>
                   <div><b>Início: </b> {{ event.startDate }}</div>
@@ -26,6 +26,17 @@
                     <a [routerLink]="['/remove/', event.eventId]"><i mz-icon class="red-text" [icon]="'delete'"></i></a>            
                   </div>
                 </mz-collection-item>
+
+                <mz-collection-item [avatar]="true" *ngFor="let event of pastEvents">
+                    <i mz-avatar mz-icon [icon]="'event_available'" class="grey"></i>
+                    <div class="title">{{ event.description }}</div>
+                    <div><b>Início: </b> {{ event.startDate }}</div>
+                    <div><b>Término: </b> {{ event.endDate }}</div>
+                    <div mz-secondary-content>
+                      <a [routerLink]="['/edit/', event.eventId]"><i mz-icon class="blue-text" [icon]="'edit'"></i></a>
+                      <a [routerLink]="['/remove/', event.eventId]"><i mz-icon class="red-text" [icon]="'delete'"></i></a>            
+                    </div>
+                  </mz-collection-item>
                 
               </mz-collection>
       </mz-card-content>

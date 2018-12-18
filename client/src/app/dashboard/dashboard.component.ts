@@ -27,7 +27,8 @@ export interface EventDashboardUnit {
 })
 export class DashboardComponent implements OnInit {
   eventQueryResults: EventResult[] = null;
-  allEvents: EventDashboardUnit[] = [];
+  futureEvents: EventDashboardUnit[] = [];
+  pastEvents: EventDashboardUnit[] = [];
   
   constructor(private authService: AuthService,
               private eventService: EventService) {
@@ -48,17 +49,46 @@ export class DashboardComponent implements OnInit {
 
   updateEventList(){
     var ev: EventDashboardUnit[] = [];
+    var past: EventResult[] = [];
+    var evp: EventDashboardUnit[] = [];
+
+    this.eventQueryResults.sort((left, right): number => {
+      if (moment(left.startDate).isBefore(moment(right.startDate))) return -1;
+      if (left.startDate == right.startDate) return 0;
+      return 1;
+    });
 
     this.eventQueryResults.forEach(function (event){
-      ev.push({
+      // if is a past event
+      if (moment(event.endDate).isSameOrBefore(moment())){
+        past.push(event); // push to the past group
+      } else {
+        ev.push({ // prepare the future events
+          description: event.description,
+          startDate: moment(event.startDate).format("DD/MM/YYYY, HH[h]mm"),
+          endDate: moment(event.endDate).format("DD/MM/YYYY, HH[h]mm"),
+          eventId: event._id
+        });
+      }    
+    });
+
+    past.sort((left, right): number => { // desc-sort past events by end date 
+      if (moment(left.endDate).isBefore(moment(right.endDate))) return 1;
+      if (left.endDate == right.endDate) return 0;
+      return -1;
+    });
+
+    past.forEach(function (event){ // prepare the past events
+      evp.push({
         description: event.description,
         startDate: moment(event.startDate).format("DD/MM/YYYY, HH[h]mm"),
         endDate: moment(event.endDate).format("DD/MM/YYYY, HH[h]mm"),
         eventId: event._id
       });
-    });
+    })
 
-    this.allEvents = ev;
+    this.futureEvents = ev;
+    this.pastEvents = evp;
   }
 
   ngOnInit() {
