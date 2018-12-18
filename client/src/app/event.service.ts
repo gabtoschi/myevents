@@ -24,7 +24,7 @@ export interface CreateEventResponse{
   success: true
 }
 
-const apiUrl = 'http://localhost:3000';
+const apiUrl = 'http://localhost:3000/api';
 
 @Injectable({
   providedIn: 'root'
@@ -43,7 +43,7 @@ export class EventService {
       userId: this.authService.getUserInfo()._id
     };
 
-    base = this.http.post(`${apiUrl}/api/event`, info);
+    base = this.http.post(`${apiUrl}/event`, info);
 
     const request = base.pipe(
       map((data: CreateEventResponse) => {
@@ -52,6 +52,12 @@ export class EventService {
     );
 
     return request;
+  }
+
+  public getAllEventsByUser() : Observable<any>{
+    let userId = this.authService.getUserInfo()._id;
+
+    return this.http.get(`${apiUrl}/event/all/${userId}`);
   }
 
 }

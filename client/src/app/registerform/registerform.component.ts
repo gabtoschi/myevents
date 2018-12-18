@@ -26,7 +26,7 @@ export class RegisterformComponent implements OnInit {
     this.credentials.password = this.registerForm.get('password').value;
 
     this.authService.register(this.credentials).subscribe(() => 
-      { this.router.navigateByUrl('/profile'); },
+      { this.router.navigateByUrl('/dashboard'); },
       (err) => { console.error(err); }
     );
   }

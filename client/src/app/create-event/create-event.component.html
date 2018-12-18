@@ -1,37 +1,41 @@
-<mz-modal [bottomSheet]="true" [fixedFooter]="true">
+<div class="row">
+    <div class="col s12 m12 l10 offset-l1">
+      <mz-card>
 
-  <mz-modal-header>
-    <h4>Novo evento</h4>
-  </mz-modal-header>
-  
-  <mz-modal-content [formGroup]="createForm">
-    <mz-textarea-container>
-      <textarea mz-textarea [label]='"Descrição"' formControlName="description"></textarea>
-    </mz-textarea-container>
+        <mz-card-title>
+          Novo evento
+        </mz-card-title>
 
-    <div class="row">
-      <mz-datepicker-container class="col s12 m3 l3">
-        <input mz-datepicker [label]='"Data de início"' [options]="datePickerOptions" id="startDate" formControlName="startDate">
-      </mz-datepicker-container>
+        <mz-card-content [formGroup]="createForm">
+            <mz-textarea-container>
+                <textarea mz-textarea [label]='"Descrição"' formControlName="description"></textarea>
+              </mz-textarea-container>
+          
+              <div class="row">
+                <mz-datepicker-container class="col s12 m3 l3">
+                  <input mz-datepicker [label]='"Data de início"' [options]="datePickerOptions" id="startDate" formControlName="startDate">
+                </mz-datepicker-container>
+          
+                <mz-timepicker-container class="col s12 m3 l3">
+                    <input mz-timepicker [label]='"Hora de início"' [options]="timePickerOptions" id="startTime" formControlName="startTime">
+                </mz-timepicker-container>
+          
+                <mz-datepicker-container class="col s12 m3 l3">
+                    <input mz-datepicker [label]='"Data de término"' [options]="datePickerOptions" id="endDate" formControlName="endDate">
+                </mz-datepicker-container>
+          
+                <mz-timepicker-container class="col s12 m3 l3">
+                    <input mz-timepicker [label]='"Hora de término"' [options]="timePickerOptions" id="endTime" formControlName="endTime">
+                </mz-timepicker-container>
+              </div>
+        </mz-card-content>
 
-      <mz-timepicker-container class="col s12 m3 l3">
-          <input mz-timepicker [label]='"Hora de início"' [options]="timePickerOptions" id="startTime" formControlName="startTime">
-      </mz-timepicker-container>
-
-      <mz-datepicker-container class="col s12 m3 l3">
-          <input mz-datepicker [label]='"Data de término"' [options]="datePickerOptions" id="endDate" formControlName="endDate">
-      </mz-datepicker-container>
-
-      <mz-timepicker-container class="col s12 m3 l3">
-          <input mz-timepicker [label]='"Hora de término"' [options]="timePickerOptions" id="endTime" formControlName="endTime">
-      </mz-timepicker-container>
+        <mz-card-action>
+            <form [formGroup]="createForm" (ngSubmit)="submitForm()">
+                <a mz-button class="red-text" [flat]="true" routerLink="/dashboard">Cancelar</a>
+                <button mz-button class="green-text" [flat]="true" type="submit">Cadastrar</button>
+            </form>
+        </mz-card-action>
+      </mz-card>
     </div>
-  </mz-modal-content>
-
-  <mz-modal-footer>
-    <form [formGroup]="createForm" (ngSubmit)="submitForm()">
-      <button class="green-text" mz-button [flat]="true" type="submit">Cadastrar</button>
-    </form>
-  </mz-modal-footer>
-
-</mz-modal>
+  </div>

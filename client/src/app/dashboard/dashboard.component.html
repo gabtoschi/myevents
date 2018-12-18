@@ -3,11 +3,11 @@
     <mz-card>
       <mz-card-content>
           <div class="row">
-              <button mz-button (click)="openCreateEventModal()" class="green col s8 offset-s2 m3 l3">
+              <a mz-button routerLink='/create' class="green col s8 offset-s2 m3 l3">
                   <i mz-icon
                   [align]="'left'"
                   [icon]="'add'"
-                  [size]="'small'"></i>Novo evento</button>
+                  [size]="'small'"></i>Novo evento</a>
       
                   <button mz-button (click)="logoutUser()" class="indigo col s8 offset-s2 m3 l3 offset-m6 offset-l6">
                       <i mz-icon
@@ -16,11 +16,11 @@
                       [size]="'small'"></i>Logout</button>
           </div>
             <mz-collection>
-                <mz-collection-item [avatar]="true">
+                <mz-collection-item [avatar]="true" *ngFor="let event of allEvents">
                   <i mz-avatar mz-icon [icon]="'event'" class="indigo"></i>
-                  <div class="title">Reunião de Desenvolvimento</div>
-                  <div>23/08/2018</div>
-                  <div>15h00 - 19h00</div>
+                  <div class="title">{{ event.description }}</div>
+                  <div><b>Início: </b> {{ event.startDate }}</div>
+                  <div><b>Término: </b> {{ event.endDate }}</div>
                   <div mz-secondary-content>
                     <a href=""><i mz-icon class="blue-text" [icon]="'edit'"></i></a>
                     <a href=""><i mz-icon class="red-text" [icon]="'delete'"></i></a>            

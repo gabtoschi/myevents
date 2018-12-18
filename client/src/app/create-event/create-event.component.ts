@@ -1,18 +1,17 @@
 import { Component } from '@angular/core';
-import { MzBaseModal } from 'ngx-materialize';
 import { MzToastService } from 'ngx-materialize';
 
 import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { EventService, CreateEventFormData } from '../event.service';
- 
+
 @Component({
   selector: 'app-create-event',
   templateUrl: './create-event.component.html',
   styleUrls: ['./create-event.component.css']
 })
-export class CreateEventComponent extends MzBaseModal {
+export class CreateEventComponent {
   postData: CreateEventFormData = {
     description: '', startDate: new Date(Date.now()), endDate: new Date(Date.now())
   };
@@ -52,20 +51,12 @@ export class CreateEventComponent extends MzBaseModal {
   }
 
   constructor(private eventService: EventService, private router: Router, private toastService: MzToastService) {
-    super();
-  }
-
-  resetForm(){
-    this.createForm.setValue({
-      description: '',
-      startDate: '',
-      endDate: '',
-      startTime: '',
-      endTime: ''
-    });
+    
   }
 
   submitForm(){
+    console.log("form submitted");
+
     // description
     this.postData.description = this.createForm.get('description').value;
 
@@ -84,11 +75,12 @@ export class CreateEventComponent extends MzBaseModal {
     this.eventService.createEvent(this.postData).subscribe(
       () => {
         this.toastService.show('Evento cadastrado!', 4000, 'green');
-        this.resetForm(); 
+        this.router.navigateByUrl('/dashboard');
       },
       (err) => { 
         this.toastService.show('Aconteceu um erro durante a operação. Tente novamente.', 4000, 'red');
         console.error(err);
+        this.router.navigateByUrl('/dashboard');
       }
     );
   }
