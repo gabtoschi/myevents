@@ -16,7 +16,8 @@ router.post('/login', authController.login);
 // event controller
 const eventController = require('../controllers/event');
 router.post('/event', eventController.createEvent);
-router.get('/event/all/:userId', eventController.getEvents)
+router.get('/event/all/:userId', eventController.getEvents);
+router.get('/event/:eventId', eventController.getEventById);
 
 // profile controller
 const profileController = require('../controllers/profile');

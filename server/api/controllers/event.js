@@ -23,7 +23,7 @@ module.exports.createEvent = function(req, res){
     })
 };
 
-// /api/event/:userId (GET): return all events created by a user
+// /api/event/all/:userId (GET): return all events created by a user
 module.exports.getEvents = function (req, res){
     // if no user exists in JWT, return error
     //if (!req.payload._id){
@@ -35,4 +35,12 @@ module.exports.getEvents = function (req, res){
             else res.status(200).json(events);
         });
     //}
+}
+
+// /api/event/:eventId (GET): return a event by id
+module.exports.getEventById = function (req, res){
+    Event.findById(req.params.eventId).exec(function(err, event){
+        if (err) res.status(404).json(err);
+        else res.status(200).json(event);
+    });
 }
