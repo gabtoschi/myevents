@@ -14,12 +14,14 @@ import { LoginformComponent } from './loginform/loginform.component';
 import { RegisterformComponent } from './registerform/registerform.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CreateEventComponent } from './create-event/create-event.component';
+import { RemoveEventComponent } from './remove-event/remove-event.component';
+import { EditEventComponent } from './edit-event/edit-event.component';
 
 import { ProfileComponent } from './profile/profile.component';
 
 import { AuthService } from './auth.service';
 import { AuthGuardService } from './auth-guard.service';
-import { RemoveEventComponent } from './remove-event/remove-event.component';
+
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { RemoveEventComponent } from './remove-event/remove-event.component';
     ProfileComponent,
     DashboardComponent,
     CreateEventComponent,
-    RemoveEventComponent
+    RemoveEventComponent,
+    EditEventComponent
   ],
   imports: [
     BrowserModule,
