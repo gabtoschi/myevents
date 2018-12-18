@@ -19,7 +19,9 @@ const routes: Routes = [
   {path: 'create', component: CreateEventComponent, canActivate: [AuthGuardService]},
   {path: 'remove/:id', component: RemoveEventComponent, canActivate: [AuthGuardService]},
   {path: 'edit/:id', component: EditEventComponent, canActivate: [AuthGuardService]},
-  {path: '', redirectTo: '/login', pathMatch: 'full'}
+  {path: '', redirectTo: '/login', pathMatch: 'full'},
+  {path: 'remove', redirectTo: '/login', pathMatch: 'full'},
+  {path: 'edit', redirectTo: '/login', pathMatch: 'full'}
 ];
 
 @NgModule({
