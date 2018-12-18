@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
 import { EventService } from '../event.service';
+import { Router } from '@angular/router';
+import { MzToastService } from 'ngx-materialize';
 
 import * as moment from 'moment';
 
@@ -31,10 +33,12 @@ export class RemoveEventComponent implements OnInit {
     description: 'ph', startDate: 'ph', endDate: 'ph'
   };
 
-  constructor(private route: ActivatedRoute, private eventService: EventService) { }
+  constructor(private route: ActivatedRoute, 
+              private eventService: EventService, 
+              private router: Router,
+              private toastService: MzToastService) { }
 
   getEventData(){
-    console.log(this.eventId);
     this.eventService.getEventById(this.eventId).subscribe((
       event => {
         this.eventData = event;
@@ -52,7 +56,17 @@ export class RemoveEventComponent implements OnInit {
   }
 
   removeEvent(){
-    console.log("todo");
+    this.eventService.removeEvent(this.eventId).subscribe(
+      () => {
+        this.toastService.show('Evento removido!', 4000, 'green');
+        this.router.navigateByUrl('/dashboard');
+      },
+      (err) => { 
+        this.toastService.show('Aconteceu um erro durante a operação. Tente novamente.', 4000, 'red');
+        console.error(err);
+        this.router.navigateByUrl('/dashboard');
+      }
+    );
   }
 
   ngOnInit() {

@@ -47,8 +47,16 @@ module.exports.getEventById = function (req, res){
 
 // /api/remove/:eventId (REMOVE): remove a event by id
 module.exports.removeEvent = function (req, res){
-    Event.findByIdAndRemove(req.params.eventId).exec(function(err){
-        if (err) res.status(404).json(err);
-        else res.status(200).json({'success': true});
+    console.log("ue ue");
+    Event.findByIdAndRemove(req.params.eventId).exec(function(err, event){
+        console.log("ue");
+        if (err) {
+            console.log(err);
+            res.status(404).json(err);
+        }
+        else {
+            console.log(event);
+            res.status(200).json(event);
+        }
     });
 }
