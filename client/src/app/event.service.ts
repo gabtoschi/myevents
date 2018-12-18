@@ -14,13 +14,13 @@ export interface EventInfo {
   endDate: Date
 }
 
-export interface CreateEventFormData {
+export interface EventFormData {
   description: string,
   startDate: Date,
   endDate: Date
 }
 
-export interface CreateEventResponse{
+export interface EventQueryResponse{
   success: true
 }
 
@@ -33,7 +33,7 @@ export class EventService {
 
   constructor(private http: HttpClient, private router: Router, private authService: AuthService) { }
 
-  public createEvent(formData: CreateEventFormData) : Observable<any>{
+  public createEvent(formData: EventFormData) : Observable<any>{
     let base;
 
     let info: EventInfo = {
@@ -46,7 +46,7 @@ export class EventService {
     base = this.http.post(`${apiUrl}/event`, info);
 
     const request = base.pipe(
-      map((data: CreateEventResponse) => {
+      map((data: EventQueryResponse) => {
         return data;
       })
     );
@@ -66,6 +66,27 @@ export class EventService {
 
   public removeEvent(eventId): Observable<any>{
     return this.http.delete(`${apiUrl}/remove/${eventId}`);
+  }
+
+  public editEvent(eventId, formData: EventFormData): Observable<any>{
+    let base;
+
+    let info: EventInfo = {
+      description: formData.description,
+      startDate: formData.startDate,
+      endDate: formData.endDate,
+      userId: this.authService.getUserInfo()._id
+    };
+
+    base = this.http.put(`${apiUrl}/edit/${eventId}`, info);
+
+    const request = base.pipe(
+      map((data: EventQueryResponse) => {
+        return data;
+      })
+    );
+
+    return request;
   }
 
 }

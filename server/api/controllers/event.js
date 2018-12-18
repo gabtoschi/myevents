@@ -57,6 +57,6 @@ module.exports.removeEvent = function (req, res){
 module.exports.editEvent = function (req, res){
     Event.findByIdAndUpdate(req.params.eventId, req.body).exec(function(err, event) {
         if (err) res.status(404).json(err);
-        else res.status(200),json(event);
+        else res.status(200).json(event);
     });
 }

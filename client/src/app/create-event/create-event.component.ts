@@ -4,7 +4,7 @@ import { MzToastService } from 'ngx-materialize';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { EventService, CreateEventFormData } from '../event.service';
+import { EventService, EventFormData } from '../event.service';
 
 @Component({
   selector: 'app-create-event',
@@ -12,7 +12,7 @@ import { EventService, CreateEventFormData } from '../event.service';
   styleUrls: ['./create-event.component.css']
 })
 export class CreateEventComponent {
-  postData: CreateEventFormData = {
+  eventData: EventFormData = {
     description: '', startDate: new Date(Date.now()), endDate: new Date(Date.now())
   };
 
@@ -58,21 +58,21 @@ export class CreateEventComponent {
     console.log("form submitted");
 
     // description
-    this.postData.description = this.createForm.get('description').value;
+    this.eventData.description = this.createForm.get('description').value;
 
     // start date + time
     let startD = this.createForm.get('startDate').value.split(':');
     let startT = this.createForm.get('startTime').value.split(':');
-    this.postData.startDate = new Date(startD[0]-1, startD[1], startD[2], startT[0], startT[1], 0, 0);
-    console.log(this.postData.startDate);
+    this.eventData.startDate = new Date(startD[0]-1, startD[1], startD[2], startT[0], startT[1], 0, 0);
+    console.log(this.eventData.startDate);
 
     // end date + time
     let endD = this.createForm.get('endDate').value.split(':');
     let endT = this.createForm.get('endTime').value.split(':');
-    this.postData.endDate = new Date(endD[0]-1, endD[1], endD[2], endT[0], endT[1], 0, 0);
-    console.log(this.postData.endDate);
+    this.eventData.endDate = new Date(endD[0]-1, endD[1], endD[2], endT[0], endT[1], 0, 0);
+    console.log(this.eventData.endDate);
 
-    this.eventService.createEvent(this.postData).subscribe(
+    this.eventService.createEvent(this.eventData).subscribe(
       () => {
         this.toastService.show('Evento cadastrado!', 4000, 'green');
         this.router.navigateByUrl('/dashboard');

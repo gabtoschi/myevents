@@ -5,7 +5,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 
-import { EventService } from '../event.service';
+import { EventService, EventFormData } from '../event.service';
 
 import * as moment from 'moment';
 
@@ -23,6 +23,9 @@ export interface EventResult {
   styleUrls: ['./edit-event.component.css']
 })
 export class EditEventComponent implements OnInit {
+  postData: EventFormData = {
+    description: '', startDate: new Date(Date.now()), endDate: new Date(Date.now())
+  };
 
   editForm = new FormGroup({
     description: new FormControl(),
@@ -91,6 +94,31 @@ export class EditEventComponent implements OnInit {
   }
 
   confirmEdit(){
-    console.log("todo");
+    // description
+    this.eventData.description = this.editForm.get('description').value;
+
+    // start date + time
+    let startD = this.editForm.get('startDate').value.split(':');
+    let startT = this.editForm.get('startTime').value.split(':');
+    this.eventData.startDate = new Date(startD[0]-1, startD[1], startD[2], startT[0], startT[1], 0, 0);
+    console.log(this.eventData.startDate);
+
+    // end date + time
+    let endD = this.editForm.get('endDate').value.split(':');
+    let endT = this.editForm.get('endTime').value.split(':');
+    this.eventData.endDate = new Date(endD[0]-1, endD[1], endD[2], endT[0], endT[1], 0, 0);
+    console.log(this.eventData.endDate);
+
+    this.eventService.editEvent(this.eventId, this.eventData).subscribe(
+      () => {
+        this.toastService.show('Evento editado!', 4000, 'green');
+        this.router.navigateByUrl('/dashboard');
+      },
+      (err) => { 
+        this.toastService.show('Aconteceu um erro durante a operação. Tente novamente.', 4000, 'red');
+        console.error(err);
+        this.router.navigateByUrl('/dashboard');
+      }
+    );
   }
 }
