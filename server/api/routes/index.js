@@ -19,6 +19,7 @@ router.post('/event', eventController.createEvent);
 router.get('/event/all/:userId', eventController.getEvents);
 router.get('/event/:eventId', eventController.getEventById);
 router.delete('/remove/:eventId', eventController.removeEvent);
+router.put('/edit/:eventId', eventController.editEvent);
 
 // profile controller
 const profileController = require('../controllers/profile');
