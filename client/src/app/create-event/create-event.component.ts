@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MzToastService } from 'ngx-materialize';
 
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { EventService, EventFormData } from '../event.service';
@@ -13,17 +13,17 @@ import * as moment from 'moment';
   templateUrl: './create-event.component.html',
   styleUrls: ['./create-event.component.css']
 })
-export class CreateEventComponent {
+export class CreateEventComponent implements OnInit {
   eventData: EventFormData = {
     description: '', startDate: new Date(Date.now()), endDate: new Date(Date.now())
   };
 
   createForm = new FormGroup({
-    description: new FormControl(),
-    startDate: new FormControl(),
-    endDate: new FormControl(),
-    startTime: new FormControl(),
-    endTime: new FormControl()
+    description: new FormControl('', Validators.required),
+    startDate: new FormControl('', Validators.required),
+    endDate: new FormControl('', Validators.required),
+    startTime: new FormControl('', Validators.required),
+    endTime: new FormControl('', Validators.required)
   });
 
   datePickerOptions: Pickadate.DateOptions = {
@@ -56,8 +56,32 @@ export class CreateEventComponent {
     
   }
 
+  ngOnInit(){
+
+  }
+
+  checkFormValidity(): string {
+    // start date time < end date time
+    let start: moment.Moment = moment(
+      this.createForm.get('startDate').value + ':' + this.createForm.get('startTime').value,
+      'YYYY:MM:DD:HH:mm');
+
+    let end: moment.Moment = moment(
+      this.createForm.get('endDate').value + ':' + this.createForm.get('endTime').value,
+      'YYYY:MM:DD:HH:mm');
+
+    if (end.isBefore(start)) return 'O evento não pode acabar antes da data de início.'
+
+    return null;
+  }
+
   submitForm(){
-    console.log("form submitted");
+    let validity = this.checkFormValidity();
+    console.log(validity);
+    if (validity != null){
+      this.toastService.show(validity, 4000, 'red');
+      return;
+    }
 
     // description
     this.eventData.description = this.createForm.get('description').value;

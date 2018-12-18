@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MzToastService } from 'ngx-materialize';
 
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 
@@ -28,11 +28,11 @@ export class EditEventComponent implements OnInit {
   };
 
   editForm = new FormGroup({
-    description: new FormControl(),
-    startDate: new FormControl(),
-    endDate: new FormControl(),
-    startTime: new FormControl(),
-    endTime: new FormControl()
+    description: new FormControl('', Validators.required),
+    startDate: new FormControl('', Validators.required),
+    endDate: new FormControl('', Validators.required),
+    startTime: new FormControl('', Validators.required),
+    endTime: new FormControl('', Validators.required)
   });
 
   datePickerOptions: Pickadate.DateOptions = {
@@ -93,7 +93,28 @@ export class EditEventComponent implements OnInit {
     this.editForm.get('endDate').setValue(moment(this.eventData.endDate).format('YYYY:MM:DD'));
   }
 
+  checkFormValidity(): string {
+    // start date time < end date time
+    let start: moment.Moment = moment(
+      this.editForm.get('startDate').value + ':' + this.editForm.get('startTime').value,
+      'YYYY:MM:DD:HH:mm');
+
+    let end: moment.Moment = moment(
+      this.editForm.get('endDate').value + ':' + this.editForm.get('endTime').value,
+      'YYYY:MM:DD:HH:mm');
+
+    if (end.isBefore(start)) return 'O evento não pode acabar antes da data de início.'
+
+    return null;
+  }
+
   confirmEdit(){
+    let validity = this.checkFormValidity();
+    if (validity != null){
+      this.toastService.show(validity, 4000, 'red');
+      return;
+    }
+
     // description
     this.eventData.description = this.editForm.get('description').value;
 
