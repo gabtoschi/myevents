@@ -3,8 +3,19 @@ import { MzToastService } from 'ngx-materialize';
 
 import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { EventService } from '../event.service';
+
+import * as moment from 'moment';
+
+export interface EventResult {
+  _id: string,
+  description: string,
+  userId: string,
+  startDate: Date,
+  endDate: Date
+}
 
 @Component({
   selector: 'app-edit-event',
@@ -47,9 +58,39 @@ export class EditEventComponent implements OnInit {
     canceltext: 'Cancelar'
   };
 
-  constructor(private eventService: EventService, private router: Router, private toastService: MzToastService) { }
+  eventId: string;
+  eventData: EventResult;
+
+  constructor(private eventService: EventService, 
+              private router: Router, 
+              private toastService: MzToastService,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.eventId = this.route.snapshot.paramMap.get('id');
+    this.getEventData();
   }
 
+  getEventData(){
+    this.eventService.getEventById(this.eventId).subscribe((
+      event => {
+        this.eventData = event;
+        this.putValuesInForm();
+      }
+    ))
+  }
+
+  putValuesInForm(){
+    this.editForm.get('description').setValue(this.eventData.description);
+
+    this.editForm.get('startTime').setValue(moment(this.eventData.startDate).format('hh:mm'));
+    this.editForm.get('endTime').setValue(moment(this.eventData.endDate).format('hh:mm'));
+
+    this.editForm.get('startDate').setValue(moment(this.eventData.startDate).format('YYYY:MM:DD'));
+    this.editForm.get('endDate').setValue(moment(this.eventData.endDate).format('YYYY:MM:DD'));
+  }
+
+  confirmEdit(){
+    console.log("todo");
+  }
 }

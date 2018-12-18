@@ -17,7 +17,7 @@
                 </mz-datepicker-container>
           
                 <mz-timepicker-container class="col s12 m3 l3">
-                    <input mz-timepicker [label]='"Hora de início"' [options]="timePickerOptions" id="startTime" formControlName="startTime">
+                    <input mz-timepicker [label]='"Hora de início"' [placeholder]='"00:00"' [options]="timePickerOptions" id="startTime" formControlName="startTime">
                 </mz-timepicker-container>
           
                 <mz-datepicker-container class="col s12 m3 l3">
@@ -25,13 +25,13 @@
                 </mz-datepicker-container>
           
                 <mz-timepicker-container class="col s12 m3 l3">
-                    <input mz-timepicker [label]='"Hora de término"' [options]="timePickerOptions" id="endTime" formControlName="endTime">
+                    <input mz-timepicker [label]='"Hora de término"' [placeholder]='"00:00"' [options]="timePickerOptions" id="endTime" formControlName="endTime">
                 </mz-timepicker-container>
               </div>
         </mz-card-content>
 
         <mz-card-action>
-            <form [formGroup]="editForm" (ngSubmit)="submitForm()">
+            <form [formGroup]="editForm" (ngSubmit)="confirmEdit()">
                 <a mz-button class="red-text" [flat]="true" routerLink="/dashboard">Cancelar</a>
                 <button mz-button class="blue-text" [flat]="true" type="submit">Finalizar edição</button>
             </form>
