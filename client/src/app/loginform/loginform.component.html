@@ -10,7 +10,7 @@
 
         <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
           <mz-input-container>
-              <input mz-input type="email" [label]='"E-mail"' formControlName="email">
+              <input mz-input type="email" [label]='"E-mail"' formControlName="email" email="true">
           </mz-input-container>
           <mz-input-container>
               <input mz-input type="password" [label]='"Senha"' formControlName="password">
